@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+    <meta name="format-detection" content="telephone=no">
+    <link rel="stylesheet" type="text/css" href="/static/css/reset.css">
+	<title>mgo</title>
+	<script src="/static/script/vue.js"></script>
+	<script src="/static/script/zepto.js"></script>
+	<script type="text/javascript">
+		$.get('/ajax/mongoose', function(d){
+			// debugger;
+			new Vue({
+				el: "#mgo",
+				data: {
+					mgo: d
+				}
+			});
+		}, 'json');
+		// alert(mgo);
+	</script>
+</head>
+<body>
+    <div id="mgo">
+    	<ul>
+    		<li v-for="card in mgo">
+    			<span class="name">Welcome,{{ card.name }}</span>
+    			<span class="pwd">Your pwd is 123</span>
+    		</li>
+    	</ul>
+    </div>
+    
+</body>
+</html>

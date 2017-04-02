@@ -41,6 +41,16 @@ exports.get_male_data = function(){
     return content;
 }
 
+exports.get_check_data = function(){
+    var content = fs.readFileSync('./mock/check.json', 'utf-8');
+    return content;
+}
+
+exports.get_catedetail_data = function(){
+    var content = fs.readFileSync('./mock/catedetail.json', 'utf-8');
+    return content;
+}
+
 //book比较不一样，需要根据id去取
 exports.get_book_data = function(id) {
     if (!id) {
@@ -52,6 +62,17 @@ exports.get_book_data = function(id) {
         return fs.readFileSync('./mock/book/18218.json', 'utf-8');
     }
 }
+//来自DB
+// exports.get_book_data = function(id) {
+//     if (!id) {
+//         id = "18218";
+//     }
+//     if (Book.find({'book_id':id})){
+//         return Book.find({'book_id':id});
+//     } else {
+//         return Book.find({'book_id':18218});
+//     }
+// }
 
 
 exports.get_chapter_content_data = function(id){
@@ -61,6 +82,36 @@ exports.get_chapter_content_data = function(id){
     var content = fs.readFileSync('./mock/reader/data/data' + id + '.json', 'utf-8');
     return content;
 }
+
+var userList = {};
+
+exports.getLogin = function (){
+    this.body = {
+        code:200,
+        msg: "登录成功（本条消息来自后台）"
+    };
+    userList = {
+        username: req.params("username")
+    }
+};
+
+exports.userList = function (){
+    return userList;
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 exports.get_search_data = function(start, end, keyword){//异步HTTP接口，如果直接返回会有问题，所以要返回一个异步函数
 	return function(cb){
@@ -93,3 +144,4 @@ exports.get_search_data = function(start, end, keyword){//异步HTTP接口，如
         req_obj.end();
 	}
 }
+

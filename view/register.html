@@ -78,48 +78,85 @@
 </head>
 <body>
     <p class="register-title">注册Maple书城帐号</p>
-    <form name="registerForm" class="register-form" method="post" onsubmit="return false" action="/ajax/register">
-    	<p><input id="username" type="text" name="username" value="" placeholder="请输入您的用户名" ></p>
-    	<p class="pwd"><input id="password" type="password" name="regpwd" placeholder="密码"></p>
-    	<p class="pwd"><input id="confirmpwd" type="password" name="regConfirmpwd" placeholder="确认密码"></p>
+    <form name="registerForm" class="register-form" method="post" action="/">
+    	<p><input id="regName" type="text" name="regName" value="" placeholder="请输入您的用户名" ></p>
+    	<p class="pwd"><input id="regPassword" type="password" name="regPassword" placeholder="密码"></p>
+    	<p class="pwd"><input id="regPassword2" type="password" name="regPassword2" placeholder="确认密码"></p>
         <p class="hide" style="visibility: hidden;">两次输入密码不一样</p>
-    	<p><input id="register" type="submit" name="submit" value="立即注册"></p>   
+    	<p><input id="register" type="submit" name="submit" value="立即注册" onclick="add()"></p>   
     </form>
     <p class="note">点击“立即注册”，即表示您同意并愿意遵守Maple书城<span> 用户协议</span> 和 <span>隐私政策</span></p>
     <p class="publish">Maple公司版权所有-京ICP备10046444-<img src="static/img/map.png"> 京公网安备11010802020134号-京ICP证110507号</p>
     <script src="/static/script/zepto.js"></script>
     <script type="text/javascript">
-        $(function(){ 
-        // $("#login1").click(function(){ 
-        //     location.href = 'login';
-        // });
-        $("#register").click(function(){ 
-            var username = $("#username").val();
-            var password = $("#password").val();
-            var confirmpwd = $("#confirmpwd").val();
-            if(password !== confirmpwd){ 
-                $(".pwd").css("border","1px solid red");
-                $(".hide").css("visibility", "visible");
-            }else if(password === confirmpwd){
-                var data = {"uname":username,"upwd":password};
-                $.ajax({ 
-                    url: '/ajax/register',
-                    type: 'post',
-                    data: data,
-                    success: function(data,status){ 
-                        if(status == 'success'){ 
-                            window.location.href = '/sign';
-                        }
-                    },
-                    error: function(data,err){ 
-                        window.location.href = '/register';
-                        alert("error");
-                    }
-                }); 
-            }
-        });
-    });
+    //     $(function(){ 
+    //     // $("#login1").click(function(){ 
+    //     //     location.href = 'login';
+    //     // });
+    //     $("#register").click(function(){ 
+    //         var username = $("#username").val();
+    //         var password = $("#password").val();
+    //         var confirmpwd = $("#confirmpwd").val();
+    //         if(password !== confirmpwd){ 
+    //             $(".pwd").css("border","1px solid red");
+    //             $(".hide").css("visibility", "visible");
+    //         }else if(password === confirmpwd){
+    //             var data = {"uname":username,"upwd":password};
+    //             $.ajax({ 
+    //                 url: '/ajax/register',
+    //                 type: 'post',
+    //                 data: data,
+    //                 success: function(data,status){ 
+    //                     if(status == 'success'){ 
+    //                         window.location.href = '/sign';
+    //                     }
+    //                 },
+    //                 error: function(data,err){ 
+    //                     window.location.href = '/register';
+    //                     alert("error");
+    //                 }
+    //             }); 
+    //         }
+    //     });
+    // });
 
+     function add() {
+        var url = '/addUser';
+        var name = $("#regName").val();
+        var password = $("#regPassword").val();
+        var rePassword = $("#regPassword2").val();
+        if (password !== rePassword) {
+            alert("两次输入密码不一致！");
+            return;
+        }};
+        // var query = {
+        //     name: name,
+        //     password: password
+        // };
+        // debugger;
+        // $.getJSON(url, query, function (data) {
+        //     // debugger;
+        //     if (data == true) {
+        //         // layer.closeAll();
+        //         alert("注册成功！");
+        //         return;
+        //     } else {
+        //         alert("该用户名已经被注册！");
+        //         return;
+        //     }
+        // })
+    //     $.post(url, query, function (data) {
+    //         // debugger;
+    //         if (data == true) {
+    //             // layer.closeAll();
+    //             alert("注册成功！");
+    //             return;
+    //         } else {
+    //             alert("该用户名已经被注册！");
+    //             return;
+    //         }
+    //     })
+    // }
     </script>
 </body>
 </html>

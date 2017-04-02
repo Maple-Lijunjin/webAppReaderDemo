@@ -1,18 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Sign in</title>
-	<meta charset="utf-8">
+    <title>Sign in</title>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
     <meta name="format-detection" content="telephone=no">
     <link rel="stylesheet" type="text/css" href="/static/css/reset.css">
-	<style type="text/css">
-		#moment {
-            background: url(../images/test.jpg) ;
-            background-repeat: no-repeat;
-           /* background-color: #000;*/
-            /*background: rgba(55,55,55,.5);*/
-        }
+    <style type="text/css">
         .head-img {
             text-align: center;
             margin-top: 50px;
@@ -82,18 +76,109 @@
             margin-right: 20%;
         }
         body {
-        	background-color: #eee;
+            background-color: #eee;
         }
-	</style>
+    </style>
 </head>
 <body>
-	<div class="head-img"><img src="/static/img/head.jpg"></div>
-	<form class="sign-form" method="post">
-		<p><input type="text" name="username" value="" placeholder="手机号码/邮箱"></p>
-		<p><input type="password" name="password" value="" placeholder="密码"></p>
-		<input type="submit" name="submit" value="立即登录">
-	</form>
-	<a id="register_tag" class="sign-tag" href="/register">注册</a>
-	<a id="watch_tag" class="sign-tag" href="/">游客</a>
+    <div class="head-img"><img src="/static/img/head.jpg"></div>
+    <form class="sign-form" id="myForm" method="post" action="/dosign">
+        <p><input id="username" type="text" name="username" value="" placeholder="手机号码/邮箱"></p>
+        <p><input id="password" type="password" name="password" value="" placeholder="密码"></p>
+        <input id="submit" type="submit" name="submit" value="立即登录">
+    </form>
+    <a id="register_tag" class="sign-tag" href="/register">注册</a>
+    <a id="watch_tag" class="sign-tag" href="/">游客</a>
+    <script src="/static/script/zepto.js"></script>
+    <!-- <script src="http://cdn.static.runoob.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="/static/script/page/sign.js"></script> -->
+    <!-- <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/layer/2.1/layer.js"></script> -->
+    <script type="text/javascript">
+    // debugger;
+    // $(function(){
+    //     var username = $('#username').val();
+    //     var password = $('#password').val();
+    //     function login(){
+    //         if(username == 'admin' && password == '123') {
+    //             // debugger;
+    //             // window.location.href = 'http://www.baidu.com';
+    //             alert("111");
+    //         }
+    //     }
+
+    // });
+    // 
+    // onfocus="this.value = '';"
+        // onblur="if (this.value == '') {this.value = '用户名字不能为空';}"
+        // onblur="if (this.value == '') {this.value = 'Password';}"
+        
+        // debugger;
+        // $("#submit").click(function(){
+        //     if(username == 'admin' && password == '123') {
+        //         // debugger;
+        //         // window.location.href = 'http://www.baidu.com';
+        //         alert("111");
+        //     }
+        // });
+
+
+
+
+
+        // var username = $('#username').val();
+        // var password = $('#password').val();
+        // $('#submit').click(function(){
+        //     // method="post" action="/dologin"
+
+        //     $.ajax({
+        //         url: '/dologin',
+        //         data: {
+        //             username: username,
+        //             password: password
+        //         },
+        //         type: 'POST',
+        //         dataType: 'json',
+        //         success: function(data) {
+        //             if (data.retCode == 0) {
+                       
+        //             } 
+        //         }
+        //         this.location.href = '/dologin';
+        //     }); 
+        // });
+        // 
+    //     $('#register_tag').on('click', function () {
+    //     var html = '<from method="post">' +
+    //             '<table class="reg" style="text-align: right">' +
+    //             '<tr>' +
+    //             '<td>请填写注册的账号：</td>' +
+    //             '<td><input type="text" class="text" id="regName"></td>' +
+    //             '</tr>' +
+    //             '<tr>' +
+    //             '<td>请填写注册的密码：</td>' +
+    //             '<td><input type="text" id="regPassword" ></td>' +
+    //             '</tr>' +
+    //             '<tr>' +
+    //             '<td>请再次填写密码：</td>' +
+    //             '<td><input type="text" id="regPassword2" ></td>' +
+    //             '</tr>' +
+    //             '<tr>' +
+    //             '<td></td>' +
+    //             '<td><a class="button blue big" onclick="add()">注册</a></td>' +
+    //             '</tr>' +
+    //             '</table>' +
+    //             '</form>'
+    //     layer.open({
+    //         content: html,
+    //         btn: ['OK']
+    //     });
+    // });
+    // 
+    // 
+    // 
+    // 这个是V3.0，来自http://www.cnblogs.com/lvvlan/p/4626571.html
+    
+    </script>
 </body>
 </html>

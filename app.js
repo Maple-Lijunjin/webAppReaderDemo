@@ -1,7 +1,10 @@
 var koa = require('koa');
 //koa中间件
 var controller = require('koa-route');
+// var bodyParser = require('koa-bodyparser');
+var koaBody = require('koa-body')();
 var app = new koa();//需要new
+// app.use(bodyParser());
 //渲染模板
 var views = require('co-views');
 var render = views('./view', {//view是存放路径
@@ -434,11 +437,30 @@ app.use(controller.get('/female', function*(){
 	this.body = yield render('female', {title: '女榜', nav: '女生频道'});
 }));
 
+app.use(controller.get('/day', function*(){
+	this.set('Cache-Control', 'no-cache');
+	this.body = yield render('day', {title: '日签到', nav: '签到'});
+}));
+
+/*登录start*/
 app.use(controller.get('/sign', function*(){
 	this.set('Cache-Control', 'no-cache');
 	this.body = yield render('sign', {title: '登录'});
 }));
-
+// app.use(controller.get('/regtest', function*(){
+// 	this.set('Cache-Control', 'no-cache');
+// 	this.body = "666";
+// }));
+app.use(controller.post('/dosign', koaBody, function*(){
+	console.log("11");
+	this.set('Cache-Control', 'no-cache');
+	// var username = this.query.username;
+	// var password = this.query.password;
+	console.log(this.request.body);
+	// this.body = yield render('sign', {title: '登录'});
+	this.body = yield JSON.stringify(this.request.body);
+}));
+/*登录end*/
 app.use(controller.get('/register', function*(){
 	this.set('Cache-Control', 'no-cache');
 	this.body = yield render('register', {title: '注册'});
